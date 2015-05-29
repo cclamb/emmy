@@ -39,3 +39,6 @@ nosetests.xml
 
 # VirtualEnv
 .venv/*
+
+# We don't want to version control data we use
+data
