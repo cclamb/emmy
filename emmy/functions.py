@@ -56,3 +56,12 @@ def shared_dataset(data_xy):
     # shared_y we will have to cast it to int. This little hack
     # lets us get around this issue
     return shared_x, T.cast(shared_y, 'int32')
+
+
+def gradient_descent(f, params, learning_rate, threshold):
+    while True:
+        loss = f(params)
+        d_loss_wrt_params = T.grad(loss, params)
+        params -= learning_rate * d_loss_wrt_params
+        if loss <= threshold:
+            return params
