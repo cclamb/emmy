@@ -65,3 +65,21 @@ def gradient_descent(f, params, learning_rate, threshold):
         params -= learning_rate * d_loss_wrt_params
         if loss <= threshold:
             return params
+
+
+def stochastic_gradient_descent(f, training_set, params, learning_rate, threshold):
+    for (x_i, y_i) in training_set:
+        loss = f(params, x_i, y_i)
+        d_loss_wrt_params = T.grad(loss, params)
+        params -= learning_rate * d_loss_wrt_params
+        if loss <= threshold:
+            return params
+
+
+def batch_stochastic_gradient_descent(f, train_batches, params, learning_rate, threshold):
+    for (x_batch, y_batch) in train_batches:
+        loss = f(params, x_batch, y_batch)
+        d_loss_wrt_params = T.grad(loss, params)
+        params -= learning_rate * d_loss_wrt_params
+        if loss <= threshold:
+            return params
